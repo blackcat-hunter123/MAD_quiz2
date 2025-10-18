@@ -25,9 +25,9 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   final TextEditingController _usernameController =
-  TextEditingController(text: 'Nadeem Ullah'); // default name
+  TextEditingController(text: 'Nadeem Ullah');
   final _formKey = GlobalKey<FormState>();
-  String _savedName = 'Nadeem ullah';
+  String _savedName = 'Nadeem Ullah';
 
   @override
   void dispose() {
@@ -52,23 +52,36 @@ class _ProfileScreenState extends State<ProfileScreen> {
         MediaQuery.of(context).orientation == Orientation.portrait;
 
     return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          'Profile',
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+        backgroundColor: const Color(0xFF2E7D32), // Dark green
+        centerTitle: true,
+        elevation: 4,
+      ),
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color(0xFFB9FBC0), Color(0xFF8AE99C)], // Light green gradient
+            colors: [Color(0xFFB9FBC0), Color(0xFF2E7D32)], // Light → Dark green
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
         ),
-
         child: SafeArea(
           child: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 30),
+              padding:
+              const EdgeInsets.symmetric(horizontal: 16.0, vertical: 30),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  // 🖼 Profile Picture with border
+                  // Profile Picture
                   Container(
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
@@ -84,13 +97,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     child: const CircleAvatar(
                       radius: 60,
                       backgroundImage: AssetImage('assets/mypic.jpg'),
-
                     ),
                   ),
 
                   const SizedBox(height: 16),
 
-                  // 👤 Display saved name
+                  // Username
                   Text(
                     _savedName,
                     style: const TextStyle(
@@ -103,7 +115,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                   const SizedBox(height: 8),
 
-                  // 📧 Email
+                  // Email
                   Text(
                     'nadeem56031@gmail.com',
                     style: TextStyle(
@@ -114,7 +126,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                   const SizedBox(height: 25),
 
-                  // 📦 Profile Card Section
+                  // Profile Card
                   Container(
                     width: double.infinity,
                     padding: const EdgeInsets.all(20),
@@ -131,7 +143,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                     child: Column(
                       children: [
-                        // ✍️ Editable username field
+                        // Editable username
                         Form(
                           key: _formKey,
                           child: Column(
@@ -166,7 +178,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 onPressed: _saveName,
                                 child: const Text(
                                   'Save Username',
-                                  style: TextStyle(fontSize: 16, color: Colors.white),
+                                  style: TextStyle(
+                                      fontSize: 16, color: Colors.white),
                                 ),
                               ),
                             ],
@@ -175,17 +188,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                         const SizedBox(height: 25),
 
-                        // 📝 Bio
+                        // Bio
                         const Text(
-                          'Mobile Developer | Flutter Enthusiast\n'
-                              'Loves building clean UIs and learning new tech!',
+                          'Flutter & Dart Enthusiast\nBuilding apps with clean design and code.',
                           textAlign: TextAlign.center,
                           style: TextStyle(fontSize: 15, color: Colors.black87),
                         ),
 
                         const SizedBox(height: 25),
 
-                        // 🛠 Buttons Row
+                        // Buttons
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -200,20 +212,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   const SnackBar(content: Text('Followed ✅')),
                                 );
                               },
-                              icon: const Icon(Icons.person_add, color: Colors.white),
+                              icon: const Icon(Icons.person_add,
+                                  color: Colors.white),
                               label: const Text('Follow',
                                   style: TextStyle(color: Colors.white)),
                             ),
                             const SizedBox(width: 12),
                             OutlinedButton(
                               style: OutlinedButton.styleFrom(
-                                side: const BorderSide(color: Color(0xFF1450A3)),
+                                side:
+                                const BorderSide(color: Color(0xFF1450A3)),
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 20, vertical: 12),
                               ),
                               onPressed: () {
                                 ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(content: Text('Message sent 💬')),
+                                  const SnackBar(
+                                      content: Text('Message sent 💬')),
                                 );
                               },
                               child: const Text('Message',
@@ -227,7 +242,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                   const SizedBox(height: 25),
 
-                  // 📱 Orientation info
+                  // Orientation info
                   Text(
                     'Current Orientation: ${isPortrait ? 'Portrait' : 'Landscape'}',
                     style: TextStyle(
